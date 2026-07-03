@@ -73,8 +73,11 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg);
-  backdrop-filter: blur(10px);
+  background:
+    linear-gradient(90deg, var(--body-grid-color) 1px, transparent 1px),
+    linear-gradient(var(--body-grid-color) 1px, transparent 1px),
+    var(--bg);
+  background-size: 52px 52px;
 }
 
 .preloader-content {
@@ -176,6 +179,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {

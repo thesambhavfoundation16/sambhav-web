@@ -67,9 +67,10 @@ SAMBHAV means "Possible" in Hindi. It is a youth-driven, non-profit foundational
 Sambhav teaches democratic and diplomatic literacy, negotiation for consensus, youth-led execution, public speaking, policy drafting, crisis management, and strategic networking.
 SWARASHTRA means "Our Nation" and is Sambhav Foundation's flagship MUN and Youth Parliament conference series.
 Evolution: 2022 SAMBHAV founding conference, 2023 GYS Global Youth Summit, 2024 Swarashtra 1.0, 2025 Swarashtra 2.0 themed "Voices that Shape Tomorrow", and 2026 Swarashtra 3.0 as the most ambitious edition.
-Swarashtra 3.0 committees include UNSC, UNGA-DISEC, UNHRC, AIPPM, and International Press.
-The registration fee for Swarashtra 3.0 MUN is ₹2400/- per delegate.
-The venue for the MUN is Central Law College, Lucknow.
+Swarashtra 3.0 committees include LOK SABHA, LAW COMMISSION OF INDIA, UNCLOS, UNGA, JCC, International Press, and IPL.
+The registration fee for Swarashtra 3.0 MUN is ₹2400/- per delegate, ₹9000 for an IPL Team (4 members), and ₹2400 for IPL Individual.
+The venue for the MUN is Central Law College, Sushant Golf City, Lucknow.
+The dates are 8th - 9th August, 2026. Cash Pool of 1,00,000+ INR.
 Answer warmly, beautifully, and concisely. Help students understand registration, committees, preparation, diplomacy, and Sambhav's mission. Never claim final dates or registration deadlines unless provided by the website or user.
 `;
 
@@ -421,29 +422,39 @@ function Committees() {
 
   const committees = [
     {
-      icon: Shield,
-      title: 'UNSC',
-      description: 'At the apex of global security. Navigate high-stakes geopolitical crises, draft urgent peacekeeping mandates, and negotiate ceasefires in real-time. Only the most decisive diplomats survive.',
-    },
-    {
-      icon: Globe2,
-      title: 'UNGA-DISEC',
-      description: 'The battleground for modern warfare policy. Tackle the complexities of nuclear non-proliferation, state-sponsored cyber warfare, and the illicit arms trade in a rapidly destabilizing world.',
+      icon: Landmark,
+      title: 'LOK SABHA',
+      description: 'Deliberation upon the failures of the Indian Education System with special emphasis on the implementation and challenges of the National Education Policy (NEP).',
     },
     {
       icon: Scale,
-      title: 'UNHRC',
-      description: 'The moral compass of the UN. Address systemic human rights violations, navigate complex refugee crises, and balance national sovereignty with the protection of global civil liberties.',
+      title: 'LAW COMMISSION OF INDIA',
+      description: 'Deliberation to review the working of the Constitution with special emphasis on electoral and judicial reforms based on the 2002 NCRWC Report.',
     },
     {
-      icon: Landmark,
-      title: 'AIPPM',
-      description: 'The crucible of Indian democracy. Engage in fierce constitutional debates, forge unexpected political alliances, and shape the national policy trajectory in a high-octane political simulation.',
+      icon: Globe2,
+      title: 'UNCLOS',
+      description: "Deliberation on the legal and security implications of Iran's Strait of Hormuz restrictions and their impact on global maritime oil trade.",
+    },
+    {
+      icon: Shield,
+      title: 'UNGA',
+      description: 'Deliberation upon the Apprehension of the President of Venezuela by the United States of America and its Repercussions on State Sovereignty, International Law, Diplomatic Norms, and the Maintenance of International Peace and Security.',
+    },
+    {
+      icon: MessageSquareText,
+      title: 'JCC',
+      description: 'Agenda: Classified.',
     },
     {
       icon: Newspaper,
-      title: 'International Press',
-      description: 'The fourth estate. Shape the narrative through hard-hitting investigative journalism, compelling photo essays, and press conferences that hold delegates accountable for every word.',
+      title: 'INTERNATIONAL PRESS',
+      description: 'Roles: Journalism, Photography, and Caricature.',
+    },
+    {
+      icon: Users,
+      title: 'INDIAN PREMIER LEAGUE',
+      description: 'Auction House: Historic IPL 2008 Auction (Team of 4).',
     },
   ];
 
@@ -852,9 +863,6 @@ function formatMessage(content) {
 }
 
 function Register() {
-  const [done, setDone] = useState(false);
-  const interests = useMemo(() => ['Delegate', 'International Press', 'Executive Board', 'Volunteer', 'Partner'], []);
-
   return (
     <section className="section register" id="register">
       <motion.div
@@ -864,40 +872,49 @@ function Register() {
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
-        <div>
-          <p className="eyebrow">Swarashtra 3.0</p>
-          <h2>Step into the room where young policy minds are made.</h2>
-          <p>
-            Share interest for delegation, press, organizing, or partnership. The team can follow up with
-            dates, allotments, and conference details.
-          </p>
+        <div className="register-content">
+          <p className="eyebrow">Swarashtra 3.0 Perks & Registration</p>
+          <h2>Leave a legacy. Uniting minds, inspiring change.</h2>
+          <div className="event-meta">
+            <p><strong>Dates:</strong> 8th - 9th August, 2026</p>
+            <p><strong>Cash Pool:</strong> 1,00,000+ INR</p>
+          </div>
+          
+          <ul className="perks-list">
+            <li>Substantial Cash Prizes, Curated Trophies, and Special Awards.</li>
+            <li>Official Certificates signed by esteemed leaders to elevate your CV.</li>
+            <li>A highly experienced, elite Executive Board panel.</li>
+            <li>High-octane, energetic Socials paired with gourmet food stalls.</li>
+            <li>Unrivaled networking opportunities with the circuit's top delegates.</li>
+            <li>Comprehensive training sessions to sharpen your diplomatic edge.</li>
+          </ul>
+
+          <div className="registration-fees">
+            <h3>Registration Details</h3>
+            <p><strong>UN & Indian Committees (Including IP):</strong> 2400 INR</p>
+            <p><strong>IPL Team Registration (4 Members):</strong> 9000 INR</p>
+            <p><strong>IPL Individual Registration:</strong> 2400 INR</p>
+            <small>(Note: Individual IPL registrants will be assigned to a team on a random basis.)</small>
+          </div>
         </div>
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            setDone(true);
-            event.currentTarget.reset();
-          }}
-        >
-          <input required placeholder="Full name" aria-label="Full name" />
-          <input required type="email" placeholder="Email address" aria-label="Email address" />
-          <select defaultValue="" aria-label="Interest area" required>
-            <option value="" disabled>
-              I am interested in...
-            </option>
-            {interests.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="button primary"
-            type="submit"
-          >
-            {done ? 'Interest recorded' : 'Register Interest'} <CalendarDays size={18} />
-          </motion.button>
-        </form>
+
+        <div className="register-actions">
+          <div className="action-buttons">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSctuFOtNQU4T-K25cyWxNTCfoRK_UM4dtkOLNY6FTrvrTx3Zg/viewform?pli=1" target="_blank" rel="noopener noreferrer" className="button primary">
+              Register Now <CalendarDays size={18} style={{ marginLeft: 8 }} />
+            </a>
+            <a href="https://linktr.ee/swarashtra?utm_source=linktree_profile_share&ltsid=bbd70b45-0978-4a7f-b734-3404e0701454" target="_blank" rel="noopener noreferrer" className="button secondary">
+              Explore Linktree
+            </a>
+          </div>
+
+          <div className="contact-info">
+            <h4>Contact Secretariat</h4>
+            <p><strong>Queries:</strong> <a href="mailto:send.swarashtra@gmail.com">send.swarashtra@gmail.com</a></p>
+            <p><strong>Prakhar Raj Rastogi (President):</strong> +91 7007502227</p>
+            <p><strong>Hardik Krishna (General Sec):</strong> +91 8542814136</p>
+          </div>
+        </div>
       </motion.div>
     </section>
   );
@@ -915,13 +932,13 @@ function Venue() {
       >
         <div className="venue-info">
           <p className="eyebrow">Venue</p>
-          <h2>Central Law College, Lucknow</h2>
+          <h2>Central Law College, Sushant Golf City, Lucknow</h2>
           <p>
             The diplomatic hub for Swarashtra 3.0. A space designed for deep negotiation,
             strategic dialogue, and impactful resolutions.
           </p>
           <a
-            href="https://maps.app.goo.gl/QZPDi5HpBRVSnybH7"
+            href="https://share.google/hUfppw9FJWaMYF0Nv"
             target="_blank"
             rel="noopener noreferrer"
             className="button secondary"
@@ -931,7 +948,7 @@ function Venue() {
         </div>
         <div className="venue-map">
           <iframe
-            src="https://maps.google.com/maps?q=Central%20Law%20College,%20Lucknow&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            src="https://maps.google.com/maps?q=Central%20Law%20College,%20Sushant%20Golf%20City,%20Lucknow&t=&z=14&ie=UTF8&iwloc=&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0, borderRadius: '12px' }}

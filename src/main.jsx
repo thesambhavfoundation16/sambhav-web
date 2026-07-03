@@ -424,22 +424,22 @@ function Committees() {
     {
       icon: Landmark,
       title: 'LOK SABHA',
-      description: 'Deliberation upon the failures of the Indian Education System with special emphasis on the implementation and challenges of the National Education Policy (NEP).',
+      description: 'Agenda: Deliberation upon the failures of the Indian Education System with special emphasis on the implementation and challenges of the National Education Policy (NEP).',
     },
     {
       icon: Scale,
       title: 'LAW COMMISSION OF INDIA',
-      description: 'Deliberation to review the working of the Constitution with special emphasis on electoral and judicial reforms based on the 2002 NCRWC Report.',
+      description: 'Agenda: Deliberation to review the working of the Constitution with special emphasis on electoral and judicial reforms based on the 2002 NCRWC Report.',
     },
     {
       icon: Globe2,
       title: 'UNCLOS',
-      description: "Deliberation on the legal and security implications of Iran's Strait of Hormuz restrictions and their impact on global maritime oil trade.",
+      description: "Agenda: Deliberation on the legal and security implications of Iran's Strait of Hormuz restrictions and their impact on global maritime oil trade.",
     },
     {
       icon: Shield,
       title: 'UNGA',
-      description: 'Deliberation upon the Apprehension of the President of Venezuela by the United States of America and its Repercussions on State Sovereignty, International Law, Diplomatic Norms, and the Maintenance of International Peace and Security.',
+      description: 'Agenda: Deliberation upon the Apprehension of the President of Venezuela by the United States of America and its Repercussions on State Sovereignty, International Law, Diplomatic Norms, and the Maintenance of International Peace and Security.',
     },
     {
       icon: MessageSquareText,

@@ -783,8 +783,9 @@ h3 {
 
 .committees-nav {
   display: flex;
-  justify-content: space-between;
-  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
 }
 
 .committees-nav span {

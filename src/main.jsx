@@ -147,17 +147,73 @@ function useTheme() {
   return { preference, resolvedTheme, cycle };
 }
 
+function Preloader({ progress }) {
+  return (
+    <motion.div
+      className="preloader"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, y: -40, filter: 'blur(20px)' }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className="preloader-content">
+        <motion.img 
+          src={logoUrl} 
+          alt="Sambhav Foundation" 
+          animate={{ scale: [0.98, 1.05, 0.98], opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="preloader-bar">
+          <motion.div 
+            className="preloader-fill"
+            animate={{ width: `${progress}%` }}
+            transition={{ ease: "easeOut", duration: 0.3 }}
+          />
+        </div>
+        <p>Preparing Swarashtra 3.0... {Math.round(progress)}%</p>
+      </div>
+    </motion.div>
+  );
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
   const { scrollYProgress } = useScroll();
   const { preference, resolvedTheme, cycle } = useTheme();
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    // Prevent scrolling while loading
+    document.body.style.overflow = loading ? 'hidden' : (menuOpen ? 'hidden' : '');
     return () => {
       document.body.style.overflow = '';
     };
-  }, [menuOpen]);
+  }, [loading, menuOpen]);
+
+  useEffect(() => {
+    const imagesToPreload = [logoUrl, ...validImages];
+    let loadedCount = 0;
+
+    const handleImageLoad = () => {
+      loadedCount++;
+      setProgress((loadedCount / imagesToPreload.length) * 100);
+      if (loadedCount === imagesToPreload.length) {
+        setTimeout(() => setLoading(false), 600); // Small buffer for the bar to fill
+      }
+    };
+
+    if (imagesToPreload.length === 0) {
+      setLoading(false);
+      return;
+    }
+
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.onload = handleImageLoad;
+      img.onerror = handleImageLoad; // Don't block forever if one fails
+      img.src = src;
+    });
+  }, []);
 
   const themeIcon = preference === 'system'
     ? <Monitor size={14} />
@@ -173,12 +229,22 @@ function App() {
 
   return (
     <>
-      <motion.div
-        className="scroll-progress"
-        style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
-      />
+      <AnimatePresence mode="wait">
+        {loading ? (
+          <Preloader key="preloader" progress={progress} />
+        ) : (
+          <motion.div
+            key="app-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div
+              className="scroll-progress"
+              style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
+            />
 
-      <header className="site-header">
+            <header className="site-header">
         <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
           <img src={logoUrl} alt="Sambhav Foundation logo" />
           <span>
@@ -234,6 +300,9 @@ function App() {
           {themeLabel}
         </button>
       </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

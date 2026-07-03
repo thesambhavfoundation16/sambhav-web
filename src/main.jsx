@@ -23,7 +23,7 @@ import {
   Users,
   X,
 } from 'lucide-react';
-import logoUrl from '../IMG_4789.PNG';
+import logoUrl from '../IMG_1661.PNG';
 import './styles.css';
 
 // Paste your GitHub Issue image links inside these quotes:
@@ -66,7 +66,7 @@ You are OA 1 by Matebricks, integrated as Orion AI on the Sambhav Foundation web
 SAMBHAV means "Possible" in Hindi. It is a youth-driven, non-profit foundational platform dedicated to grooming future public leaders, diplomats, and policymakers through experiential learning.
 Sambhav teaches democratic and diplomatic literacy, negotiation for consensus, youth-led execution, public speaking, policy drafting, crisis management, and strategic networking.
 SWARASHTRA means "Our Nation" and is Sambhav Foundation's flagship MUN and Youth Parliament conference series.
-Evolution: 2022 SAMBHAV founding conference, 2023 GYS Global Youth Summit, 2024 Swarashtra 1.0, 2025 Sambhav Summit themed "Voices that Shape Tomorrow", and 2026 Swarashtra 3.0 as the most ambitious edition.
+Evolution: 2022 SAMBHAV founding conference, 2023 GYS Global Youth Summit, 2024 Swarashtra 1.0, 2025 Sambhav Summit & Swarashtra 2.0 themed "Voices that Shape Tomorrow", and 2026 Swarashtra 3.0 as the most ambitious edition.
 Swarashtra 3.0 committees include LOK SABHA, LAW COMMISSION OF INDIA, UNCLOS, UNGA, JCC, International Press, and IPL.
 The venue for the MUN is Central Law College, Sushant Golf City, Lucknow.
 The dates are 8th - 9th August, 2026. Cash Pool of 1,00,000+ INR.
@@ -442,7 +442,7 @@ function Swarashtra() {
     ['2022', 'SAMBHAV', 'The founding conference and first proof of concept.'],
     ['2023', 'GYS', 'A wider Global Youth Summit focused on multilateral cooperation.'],
     ['2024', 'Swarashtra 1.0', 'The flagship identity takes shape with elevated agendas and executive boards.'],
-    ['2025', 'Sambhav Summit', 'Voices that Shape Tomorrow scales the conference with sharper crisis simulations.'],
+    ['2025', 'Sambhav Summit & Swarashtra 2.0', 'Voices that Shape Tomorrow scales the conference with sharper crisis simulations.'],
     ['2026', 'Swarashtra 3.0', 'The most polished and ambitious edition yet.'],
   ];
 

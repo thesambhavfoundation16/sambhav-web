@@ -292,7 +292,7 @@ function Hero() {
           <Stat value="2026" label="Swarashtra 3.0" />
         </motion.div>
         <motion.div variants={fadeUp} whileHover={{ x: -10, backgroundColor: "rgba(255, 255, 255, 0.15)" }}>
-          <Stat value="5" label="Core committees" />
+          <Stat value="7" label="Committees" />
         </motion.div>
       </motion.aside>
     </section>
@@ -414,120 +414,107 @@ function Swarashtra() {
 }
 
 function Committees() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
   const committees = [
     {
       icon: Landmark,
       title: 'LOK SABHA',
-      description: 'Agenda: Deliberation upon the failures of the Indian Education System with special emphasis on the implementation and challenges of the National Education Policy (NEP).',
+      agenda: 'Deliberation upon the failures of the Indian Education System with special emphasis on the implementation and challenges of the National Education Policy (NEP).',
     },
     {
       icon: Scale,
       title: 'LAW COMMISSION OF INDIA',
-      description: 'Agenda: Deliberation to review the working of the Constitution with special emphasis on electoral and judicial reforms based on the 2002 NCRWC Report.',
+      agenda: 'Deliberation to review the working of the Constitution with special emphasis on electoral and judicial reforms based on the 2002 NCRWC Report.',
     },
     {
       icon: Globe2,
       title: 'UNCLOS',
-      description: "Agenda: Deliberation on the legal and security implications of Iran's Strait of Hormuz restrictions and their impact on global maritime oil trade.",
+      fullTitle: 'United Nations Convention on the Law of the Sea',
+      agenda: "Deliberation on the legal and security implications of Iran's Strait of Hormuz restrictions and their impact on global maritime oil trade.",
     },
     {
       icon: Shield,
       title: 'UNGA',
-      description: 'Agenda: Deliberation upon the Apprehension of the President of Venezuela by the United States of America and its Repercussions on State Sovereignty, International Law, Diplomatic Norms, and the Maintenance of International Peace and Security.',
+      fullTitle: 'United Nations General Assembly',
+      agenda: 'Deliberation upon the Apprehension of the President of Venezuela by the United States of America and its Repercussions on State Sovereignty, International Law, Diplomatic Norms, and the Maintenance of International Peace and Security.',
     },
     {
       icon: MessageSquareText,
       title: 'JCC',
-      description: 'Agenda: Classified.',
+      fullTitle: 'Joint Crisis Committee',
+      agenda: 'Classified.',
     },
     {
       icon: Newspaper,
-      title: 'INTERNATIONAL PRESS',
-      description: 'Roles: Journalism, Photography, and Caricature.',
+      title: 'INTERNATIONAL PRESS (IP)',
+      agenda: null,
+      roles: 'Journalism, Photography, and Caricature.',
     },
     {
       icon: Users,
-      title: 'INDIAN PREMIER LEAGUE',
-      description: 'Auction House: Historic IPL 2008 Auction (Team of 4).',
+      title: 'INDIAN PREMIER LEAGUE (IPL)',
+      agenda: null,
+      roles: 'Auction House: Historic IPL 2008 Auction (Team of 4).',
     },
   ];
 
-  const total = committees.length;
-  const activeIndex = useTransform(scrollYProgress, (v) => {
-    const mapped = Math.floor(v * total);
-    return Math.min(mapped, total - 1);
-  });
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    return activeIndex.on('change', (v) => setCurrentIndex(v));
-  }, [activeIndex]);
-
-  const activeCommittee = committees[currentIndex];
-  const Icon = activeCommittee.icon;
-
   return (
-    <section 
-      className="section committees" 
-      id="committees"
-      ref={containerRef}
-      style={{ height: `${total * 100}vh`, padding: 0 }}
-    >
-      <div className="committees-sticky">
-        <div className="committees-sticky-content">
-          <motion.div
-            className="committees-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="eyebrow">Inside 3.0</p>
-            <h2>Committees.</h2>
-          </motion.div>
+    <section className="section committees" id="committees">
+      <motion.div
+        className="committees-top"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
+        <p className="eyebrow">Inside 3.0</p>
+        <h2>Committees &amp; Agendas</h2>
+        <p className="committees-subtitle">From the floor of the parliament to international waters — choose your arena.</p>
+      </motion.div>
 
-          <div className="committees-stage">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCommittee.title}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -40 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="committee-focus"
-              >
+      <motion.div
+        className="committees-grid"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={staggerContainer}
+      >
+        {committees.map((c) => {
+          const Icon = c.icon;
+          return (
+            <motion.article
+              key={c.title}
+              className="committee-card"
+              variants={fadeUp}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <div className="committee-card-header">
                 <div className="committee-icon-wrapper">
-                  <Icon size={72} strokeWidth={1} />
+                  <Icon size={28} strokeWidth={1.5} />
                 </div>
-                <h3>{activeCommittee.title}</h3>
-                <p>{activeCommittee.description}</p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          <div className="committees-progress-wrapper">
-            <div className="committees-progress-track">
-              <motion.div 
-                className="committees-progress-bar"
-                style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
-              />
-            </div>
-            <div className="committees-nav">
-              {committees.map((c, i) => (
-                <span key={i} className={currentIndex === i ? 'active' : ''}>
-                  {c.title}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+                <div>
+                  <h3>{c.title}</h3>
+                  {c.fullTitle && <span className="committee-full-title">{c.fullTitle}</span>}
+                </div>
+              </div>
+              <div className="committee-card-body">
+                {c.agenda && (
+                  <div className="committee-agenda">
+                    <span className="agenda-label">Agenda</span>
+                    <p>{c.agenda}</p>
+                  </div>
+                )}
+                {c.roles && (
+                  <div className="committee-agenda">
+                    <span className="agenda-label">Roles</span>
+                    <p>{c.roles}</p>
+                  </div>
+                )}
+              </div>
+            </motion.article>
+          );
+        })}
+      </motion.div>
     </section>
   );
 }

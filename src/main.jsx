@@ -72,7 +72,7 @@ The venue for the MUN is Central Law College, Sushant Golf City, Lucknow.
 The dates are 8th - 9th August, 2026. Cash Pool of 1,00,000+ INR.
 Perks: Substantial Cash Prizes, Curated Trophies, Special Awards, Official Certificates signed by esteemed leaders, elite Executive Board panel, High-octane Socials with gourmet food stalls, Unrivaled networking opportunities, Comprehensive training sessions.
 Registration Details: UN & Indian Committees (Including IP): 2400 INR. IPL Team Registration (4 Members): 9000 INR. IPL Individual Registration: 2400 INR (Individual IPL registrants will be assigned to a team on a random basis).
-Contact Secretariat Queries: send.swarashtra@gmail.com, Prakhar Raj Rastogi (President): +91 7007502227, Hardik Krishna (General Sec): +91 8542814136.
+Contact Secretariat Queries: swarashtra@sambhavfoundation.co.in, Prakhar Raj Rastogi (President): +91 7007502227, Hardik Krishna (General Sec): +91 8542814136.
 Answer warmly, beautifully, and concisely. Help students understand registration, committees, preparation, diplomacy, and Sambhav's mission. Never claim final dates or registration deadlines unless provided by the website or user.
 `;
 
@@ -973,7 +973,7 @@ function Register() {
 
           <div className="contact-info">
             <h4>Contact Secretariat</h4>
-            <p><strong>Queries:</strong> <a href="mailto:send.swarashtra@gmail.com">send.swarashtra@gmail.com</a></p>
+            <p><strong>Queries:</strong> <a href="mailto:swarashtra@sambhavfoundation.co.in">swarashtra@sambhavfoundation.co.in</a></p>
             <p><strong>Prakhar Raj Rastogi (President):</strong> +91 7007502227</p>
             <p><strong>Hardik Krishna (General Sec):</strong> +91 8542814136</p>
           </div>

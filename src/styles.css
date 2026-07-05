@@ -1527,7 +1527,7 @@ h3 {
 /* ── Privacy Policy Page ── */
 .privacy-policy-page {
   min-height: 100vh;
-  padding-top: 40px;
+  padding-top: 24px;
 }
 
 .privacy-header {
@@ -1535,34 +1535,52 @@ h3 {
   align-items: center;
   justify-content: space-between;
   padding: 24px clamp(20px, 5vw, 80px);
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+
+.pp-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .pp-logo {
-  height: 56px;
+  height: 48px;
   width: auto;
   object-fit: contain;
+  border-radius: 10px;
+}
+
+.pp-label {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
 }
 
 .privacy-content {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 20px clamp(20px, 5vw, 80px) 80px;
+  padding: 32px clamp(20px, 5vw, 80px) 80px;
 }
 
 .back-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: 32px;
-  padding: 8px 16px;
+  margin-bottom: 40px;
+  padding: 8px 18px;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--surface);
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
@@ -1571,24 +1589,143 @@ h3 {
   border-color: var(--accent);
 }
 
-.privacy-content h2 {
+.pp-hero {
+  margin-bottom: 48px;
+}
+
+.pp-hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
   font-weight: 400;
   color: var(--ink);
-  margin-bottom: 32px;
+  margin: 0 0 12px;
 }
 
-.policy-text p {
-  font-size: 1.05rem;
+.pp-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 20px;
+  max-width: 600px;
+}
+
+.pp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pp-meta span {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.policy-sections {
+  display: grid;
+  gap: 24px;
+}
+
+.policy-section {
+  padding: 28px 32px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.policy-section:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+.policy-section h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-num {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: 8px;
+  letter-spacing: 0.04em;
+}
+
+.policy-section p {
+  font-size: 1rem;
   line-height: 1.8;
   color: var(--ink-secondary);
-  margin-bottom: 24px;
+  margin: 0 0 12px;
 }
 
-.policy-text strong {
-  color: var(--ink);
-  display: inline;
+.policy-section p:last-child {
+  margin-bottom: 0;
+}
+
+.policy-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.policy-section li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-secondary);
+}
+
+.policy-section li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.policy-section a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.policy-section a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 620px) {
+  .privacy-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .pp-label {
+    display: none;
+  }
+
+  .policy-section {
+    padding: 20px;
+  }
 }
 
 /* ── Bottom Bar (Theme Toggle) ── */

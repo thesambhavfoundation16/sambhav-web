@@ -1059,30 +1059,119 @@ function PrivacyPolicy({ onBack }) {
   return (
     <div className="privacy-policy-page">
       <header className="privacy-header">
-        <img src={logoUrl} alt="Sambhav Foundation logo" className="pp-logo left" />
-        <img src="/matebrickslogo.png" alt="Matebricks logo" className="pp-logo right" />
+        <div className="pp-logo-wrap">
+          <img src={logoUrl} alt="Sambhav Foundation logo" className="pp-logo" />
+          <span className="pp-label">Sambhav Foundation</span>
+        </div>
+        <div className="pp-logo-wrap">
+          <span className="pp-label">Powered by Matebricks</span>
+          <img src="/matebrickslogo.png" alt="Matebricks logo" className="pp-logo" />
+        </div>
       </header>
-      
+
       <main className="privacy-content">
-        <button className="icon-button back-btn" onClick={onBack}>
-          <ChevronLeft size={24} /> Back
+        <button className="back-btn" onClick={onBack}>
+          <ChevronLeft size={18} /> Back to Home
         </button>
-        
-        <h2>Privacy Policy & Terms of Service</h2>
-        <div className="policy-text">
-          <p>
-            Welcome to the official website of Swarashtra 3.0, organized by the Sambhav Foundation.
-            We are committed to protecting your privacy and ensuring transparency in how your data is handled.
-          </p>
-          <p>
-            <strong>Orion AI & Data Usage</strong><br/>
-            This website features Orion AI, an intelligent agent designed to assist delegates and answer queries. 
-            Conversations of users to Orion AI may be transmitted to Matebricks for training and audit purposes.
-          </p>
-          <p>
-            <strong>Development & Authorship</strong><br/>
-            This website was made inside Matebricks and was forever given to Sambhav Foundation.
-          </p>
+
+        <div className="pp-hero">
+          <h1>Privacy Policy</h1>
+          <p className="pp-subtitle">Your privacy matters to us. This document explains how we collect, use, and protect your information.</p>
+          <div className="pp-meta">
+            <span>Effective Date: July 5, 2026</span>
+            <span>Last Updated: July 5, 2026</span>
+          </div>
+        </div>
+
+        <div className="policy-sections">
+          <div className="policy-section">
+            <h3><span className="section-num">01</span> Introduction</h3>
+            <p>
+              Welcome to the official website of Swarashtra 3.0, organized by the Sambhav Foundation.
+              We are committed to protecting your privacy and ensuring complete transparency in how your data is collected, stored, and used.
+              By accessing or using this website, you agree to the terms outlined in this Privacy Policy.
+            </p>
+          </div>
+
+          <div className="policy-section">
+            <h3><span className="section-num">02</span> Information We Collect</h3>
+            <p>
+              We may collect certain information when you interact with our website, including but not limited to:
+            </p>
+            <ul>
+              <li>Personal details you voluntarily provide through registration forms (name, email, phone number, institution).</li>
+              <li>Messages and queries submitted to the Orion AI assistant.</li>
+              <li>Usage data such as browser type, device information, and pages visited, collected via standard analytics.</li>
+            </ul>
+          </div>
+
+          <div className="policy-section">
+            <h3><span className="section-num">03</span> Orion AI &amp; Data Usage</h3>
+            <p>
+              This website features Orion AI, an intelligent conversational agent designed to assist delegates,
+              answer queries about Swarashtra 3.0, committees, registration, and the Sambhav Foundation.
+              Conversations of users with Orion AI may be transmitted to Matebricks for training and audit purposes.
+              No personally identifiable information is intentionally retained beyond the scope of the conversation session
+              unless explicitly provided by the user.
+            </p>
+          </div>
+
+          <div className="policy-section">
+            <h3><span className="section-num">04</span> Cookies &amp; Tracking</h3>
+            <p>
+              This website may use cookies or local storage to remember your theme preference (light/dark mode)
+              and improve your browsing experience. We do not use cookies for advertising or cross-site tracking purposes.
+            </p>
+          </div>
+
+          <div className="policy-section">
+            <h3><span className="section-num">05</span> Third-Party Services</h3>
+            <p>
+              Our website integrates with the following third-party services:
+            </p>
+            <ul>
+              <li>Google Fonts for typography rendering.</li>
+              <li>Google Maps for venue location display.</li>
+              <li>Google Forms for delegate registration.</li>
+              <li>Groq API for powering the Orion AI assistant.</li>
+            </ul>
+            <p>
+              Each of these services operates under its own privacy policy and terms of service.
+              We encourage you to review them independently.
+            </p>
+          </div>
+
+          <div className="policy-section">
+            <h3><span className="section-num">06</span> Children&apos;s Privacy</h3>
+            <p>
+              This website is intended for delegates, students, and educators. We do not knowingly collect
+              personal information from children under the age of 13. If you believe a minor has provided
+              personal data without consent, please contact us immediately.
+            </p>
+          </div>
+
+          <div className="policy-section">
+            <h3><span className="section-num">07</span> Development &amp; Authorship</h3>
+            <p>
+              This website was conceptualized, designed, and developed inside Matebricks
+              and was forever given to Sambhav Foundation. All intellectual property rights
+              pertaining to the website design, codebase, and Orion AI integration are shared
+              between Matebricks and Sambhav Foundation as per mutual agreement.
+            </p>
+          </div>
+
+          <div className="policy-section">
+            <h3><span className="section-num">08</span> Contact Us</h3>
+            <p>
+              If you have any questions, concerns, or requests regarding this Privacy Policy,
+              please reach out to us:
+            </p>
+            <p>
+              <strong>Email:</strong> <a href="mailto:swarashtra@sambhavfoundation.co.in">swarashtra@sambhavfoundation.co.in</a><br/>
+              <strong>President:</strong> Prakhar Raj Rastogi — +91 7007502227<br/>
+              <strong>General Secretary:</strong> Hardik Krishna — +91 8542814136
+            </p>
+          </div>
         </div>
       </main>
     </div>

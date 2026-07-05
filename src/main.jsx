@@ -198,14 +198,22 @@ function App() {
   }, [loading, menuOpen]);
 
   useEffect(() => {
-    const imagesToPreload = [logoUrl, ...validImages];
+    const imagesToPreload = [...validImages];
     let loadedCount = 0;
+    let done = false;
+
+    const finish = () => {
+      if (done) return;
+      done = true;
+      setProgress(100);
+      setTimeout(() => setLoading(false), 600);
+    };
 
     const handleImageLoad = () => {
       loadedCount++;
-      setProgress((loadedCount / imagesToPreload.length) * 100);
+      setProgress(Math.max(30, (loadedCount / imagesToPreload.length) * 100));
       if (loadedCount === imagesToPreload.length) {
-        setTimeout(() => setLoading(false), 600); // Small buffer for the bar to fill
+        finish();
       }
     };
 
@@ -214,12 +222,17 @@ function App() {
       return;
     }
 
+    // Safety timeout — never stay stuck for more than 5 seconds
+    const timeout = setTimeout(finish, 5000);
+
     imagesToPreload.forEach((src) => {
       const img = new Image();
       img.onload = handleImageLoad;
-      img.onerror = handleImageLoad; // Don't block forever if one fails
+      img.onerror = handleImageLoad;
       img.src = src;
     });
+
+    return () => clearTimeout(timeout);
   }, []);
 
   const themeIcon = preference === 'system'

@@ -84,43 +84,53 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
 }
 
 .preloader-title {
   font-family: system-ui, -apple-system, sans-serif;
-  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
   font-weight: 900;
   margin: 0;
-  text-align: center;
-  background: linear-gradient(135deg, var(--ink), var(--accent-darker));
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, var(--ink), var(--ink-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
+.preloader-title .dot {
+  font-size: 0.4em;
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+}
+
 .preloader-bar {
-  width: 220px;
-  height: 4px;
-  background: rgba(150, 150, 150, 0.2);
-  border-radius: 4px;
+  width: 260px;
+  height: 2px;
+  background: var(--border-strong);
+  border-radius: 2px;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
 .preloader-fill {
   height: 100%;
   background: var(--accent);
-  border-radius: 4px;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .preloader-content p {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
+  margin-top: -12px;
 }
 
 body {

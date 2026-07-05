@@ -158,10 +158,15 @@ function Preloader({ progress }) {
       <div className="preloader-content">
         <motion.h1
           className="preloader-title"
-          animate={{ scale: [0.98, 1.05, 0.98], opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          initial={{ opacity: 0, filter: 'blur(12px)', y: 15 }}
+          animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          नीति नेतृत्व राष्ट्र
+          <span className="word">नीति</span>
+          <span className="dot">•</span>
+          <span className="word">नेतृत्व</span>
+          <span className="dot">•</span>
+          <span className="word">राष्ट्र</span>
         </motion.h1>
         <div className="preloader-bar">
           <motion.div 

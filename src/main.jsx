@@ -182,6 +182,7 @@ function Preloader({ progress }) {
 }
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -250,53 +251,59 @@ function App() {
               style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
             />
 
-            <header className="site-header">
-        <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
-          <img src={logoUrl} alt="Sambhav Foundation logo" />
-          <span>
-            <strong>Sambhav</strong>
-            <small>Foundation</small>
-          </span>
-        </a>
+            {currentPage === 'home' ? (
+              <>
+                <header className="site-header">
+                  <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
+                    <img src={logoUrl} alt="Sambhav Foundation logo" />
+                    <span>
+                      <strong>Sambhav</strong>
+                      <small>Foundation</small>
+                    </span>
+                  </a>
 
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          {navItems.map(([label, href]) => (
-            <motion.a
-              key={href}
-              href={href}
-              whileHover={{ y: -2, color: 'var(--accent)' }}
-              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-            >
-              {label}
-            </motion.a>
-          ))}
-        </nav>
+                  <nav className="desktop-nav" aria-label="Primary navigation">
+                    {navItems.map(([label, href]) => (
+                      <motion.a
+                        key={href}
+                        href={href}
+                        whileHover={{ y: -2, color: 'var(--accent)' }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                      >
+                        {label}
+                      </motion.a>
+                    ))}
+                  </nav>
 
-        <button className="icon-button nav-button" type="button" onClick={() => setMenuOpen((open) => !open)} aria-label="Toggle menu">
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </header>
+                  <button className="icon-button nav-button" type="button" onClick={() => setMenuOpen((open) => !open)} aria-label="Toggle menu">
+                    {menuOpen ? <X size={20} /> : <Menu size={20} />}
+                  </button>
+                </header>
 
-      <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`} aria-hidden={!menuOpen}>
-        {navItems.map(([label, href]) => (
-          <a key={href} href={href} onClick={() => setMenuOpen(false)}>
-            {label}
-          </a>
-        ))}
-      </nav>
+                <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`} aria-hidden={!menuOpen}>
+                  {navItems.map(([label, href]) => (
+                    <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+                      {label}
+                    </a>
+                  ))}
+                </nav>
 
-      <main>
-        <Hero />
-        <Mission />
-        <Swarashtra />
-        <Committees />
-        <UnifiedGallery />
-        <OrionAI />
-        <Register />
-        <Venue />
-      </main>
+                <main>
+                  <Hero />
+                  <Mission />
+                  <Swarashtra />
+                  <Committees />
+                  <UnifiedGallery />
+                  <OrionAI />
+                  <Register />
+                  <Venue />
+                </main>
+              </>
+            ) : (
+              <PrivacyPolicy onBack={() => { setCurrentPage('home'); window.scrollTo(0,0); }} />
+            )}
 
-      <Footer />
+            <Footer setCurrentPage={(page) => { setCurrentPage(page); window.scrollTo(0,0); }} />
 
       {/* Bottom Bar with Theme Toggle */}
       <div className="bottom-bar">
@@ -1026,18 +1033,59 @@ function Venue() {
   );
 }
 
-function Footer() {
+function Footer({ setCurrentPage }) {
   return (
     <footer className="site-footer">
-      <a className="brand" href="#home">
-        <img src={logoUrl} alt="Sambhav Foundation logo" />
-        <span>
-          <strong>Sambhav</strong>
-          <small>Foundation</small>
-        </span>
-      </a>
-      <p>Swarashtra 3.0, a youth-led MUN and Indian Youth Parliament conference series.</p>
+      <div className="footer-content">
+        <div className="footer-brand">
+          <img src={logoUrl} alt="Sambhav Foundation logo" />
+          <span>
+            <strong>Sambhav</strong>
+            <small>Foundation</small>
+          </span>
+        </div>
+        <p>Swarashtra 3.0, a youth-led MUN and Indian Youth Parliament conference series.</p>
+        <div className="footer-links">
+          <button type="button" onClick={() => setCurrentPage('privacy')} className="footer-link">
+            Privacy Policy
+          </button>
+        </div>
+      </div>
     </footer>
+  );
+}
+
+function PrivacyPolicy({ onBack }) {
+  return (
+    <div className="privacy-policy-page">
+      <header className="privacy-header">
+        <img src={logoUrl} alt="Sambhav Foundation logo" className="pp-logo left" />
+        <img src="/matebrickslogo.png" alt="Matebricks logo" className="pp-logo right" />
+      </header>
+      
+      <main className="privacy-content">
+        <button className="icon-button back-btn" onClick={onBack}>
+          <ChevronLeft size={24} /> Back
+        </button>
+        
+        <h2>Privacy Policy & Terms of Service</h2>
+        <div className="policy-text">
+          <p>
+            Welcome to the official website of Swarashtra 3.0, organized by the Sambhav Foundation.
+            We are committed to protecting your privacy and ensuring transparency in how your data is handled.
+          </p>
+          <p>
+            <strong>Orion AI & Data Usage</strong><br/>
+            This website features Orion AI, an intelligent agent designed to assist delegates and answer queries. 
+            Conversations of users to Orion AI may be transmitted to Matebricks for training and audit purposes.
+          </p>
+          <p>
+            <strong>Development & Authorship</strong><br/>
+            This website was made inside Matebricks and was forever given to Sambhav Foundation.
+          </p>
+        </div>
+      </main>
+    </div>
   );
 }
 

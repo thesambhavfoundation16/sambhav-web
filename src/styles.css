@@ -87,9 +87,17 @@ html, body {
   gap: 24px;
 }
 
-.preloader-content img {
-  width: 90px;
-  height: auto;
+.preloader-title {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 900;
+  margin: 0;
+  text-align: center;
+  background: linear-gradient(135deg, var(--ink), var(--accent-darker));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .preloader-bar {

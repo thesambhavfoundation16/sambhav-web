@@ -156,12 +156,13 @@ function Preloader({ progress }) {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="preloader-content">
-        <motion.img 
-          src={logoUrl} 
-          alt="Sambhav Foundation" 
-          animate={{ scale: [0.98, 1.05, 0.98], opacity: [0.6, 1, 0.6] }}
+        <motion.h1
+          className="preloader-title"
+          animate={{ scale: [0.98, 1.05, 0.98], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-        />
+        >
+          नीति नेतृत्व राष्ट्र
+        </motion.h1>
         <div className="preloader-bar">
           <motion.div 
             className="preloader-fill"

@@ -1142,16 +1142,7 @@ function PrivacyPolicy({ onBack }) {
           </div>
 
           <div className="policy-section">
-            <h3><span className="section-num">06</span> Children&apos;s Privacy</h3>
-            <p>
-              This website is intended for delegates, students, and educators. We do not knowingly collect
-              personal information from children under the age of 13. If you believe a minor has provided
-              personal data without consent, please contact us immediately.
-            </p>
-          </div>
-
-          <div className="policy-section">
-            <h3><span className="section-num">07</span> Development &amp; Authorship</h3>
+            <h3><span className="section-num">06</span> Development &amp; Authorship</h3>
             <p>
               This website was conceptualized, designed, and developed inside Matebricks
               and was forever given to Sambhav Foundation. All intellectual property rights
@@ -1161,7 +1152,7 @@ function PrivacyPolicy({ onBack }) {
           </div>
 
           <div className="policy-section">
-            <h3><span className="section-num">08</span> Contact Us</h3>
+            <h3><span className="section-num">07</span> Contact Us</h3>
             <p>
               If you have any questions, concerns, or requests regarding this Privacy Policy,
               please reach out to us:

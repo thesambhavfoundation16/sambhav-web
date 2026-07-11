@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createPortal } from 'react-dom';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from 'framer-motion';
 import {
   ArrowRight,
   Bot,
@@ -198,9 +198,12 @@ function App() {
   }, [loading, menuOpen]);
 
   useEffect(() => {
-    const imagesToPreload = [...validImages];
+    const imagesToPreload = [logoUrl, ...validImages];
     let loadedCount = 0;
     let done = false;
+
+    // Start with a small base so it never looks stuck at 0
+    setProgress(5);
 
     const finish = () => {
       if (done) return;
@@ -211,7 +214,8 @@ function App() {
 
     const handleImageLoad = () => {
       loadedCount++;
-      setProgress(Math.max(30, (loadedCount / imagesToPreload.length) * 100));
+      const real = (loadedCount / imagesToPreload.length) * 100;
+      setProgress(Math.max(10, real));
       if (loadedCount === imagesToPreload.length) {
         finish();
       }
@@ -222,8 +226,8 @@ function App() {
       return;
     }
 
-    // Safety timeout — never stay stuck for more than 5 seconds
-    const timeout = setTimeout(finish, 5000);
+    // Safety timeout — dismiss after 8s max even if some images are still loading
+    const timeout = setTimeout(finish, 8000);
 
     imagesToPreload.forEach((src) => {
       const img = new Image();
@@ -472,40 +476,126 @@ function Swarashtra() {
     ['2026', 'Swarashtra 3.0', 'The most polished and ambitious edition yet.'],
   ];
 
-  return (
-    <section className="section swarashtra" id="swarashtra">
-      <motion.div
-        className="wide-heading"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeUp}
-      >
-        <p className="eyebrow">Flagship Conference</p>
-        <h2>Swarashtra is where diplomacy becomes lived experience.</h2>
-      </motion.div>
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
-      <motion.div
-        className="timeline-row"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        {timeline.map(([year, title, text]) => (
-          <motion.article
-            key={year}
-            className={`${year === '2026' ? 'active' : ''}`}
-            variants={fadeUp}
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <span>{year}</span>
-            <h3>{title}</h3>
-            <p>{text}</p>
-          </motion.article>
-        ))}
-      </motion.div>
+  const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 860);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+    const unsub = scrollYProgress.on("change", (v) => {
+      const idx = Math.min(Math.floor(v * timeline.length), timeline.length - 1);
+      setActive(idx);
+    });
+    return unsub;
+  }, [scrollYProgress, isMobile, timeline.length]);
+
+  // Mobile: simple stacked cards
+  if (isMobile) {
+    return (
+      <section className="section swarashtra" id="swarashtra">
+        <motion.div
+          className="wide-heading"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUp}
+        >
+          <p className="eyebrow">Flagship Conference</p>
+          <h2>Swarashtra is where diplomacy becomes lived experience.</h2>
+        </motion.div>
+        <div className="stl-mobile-list">
+          {timeline.map(([year, title, text], i) => (
+            <motion.div
+              key={`${year}-${title}`}
+              className={`stl-m-card ${i === timeline.length - 1 ? 'stl-m-highlight' : ''}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <div className="stl-m-dot" />
+              <span className="stl-m-year">{year}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop: sticky scroll
+  return (
+    <section
+      ref={sectionRef}
+      className="stl-scroll-section"
+      id="swarashtra"
+      style={{ height: `${(timeline.length + 1) * 100}vh` }}
+    >
+      <div className="stl-sticky">
+        <div className="stl-left">
+          <p className="eyebrow">Flagship Conference</p>
+          <h2>Swarashtra is where diplomacy becomes lived experience.</h2>
+
+          <div className="stl-progress">
+            {timeline.map(([year], i) => (
+              <button
+                key={i}
+                className={`stl-step ${i <= active ? 'stl-step-on' : ''} ${i === active ? 'stl-step-current' : ''}`}
+              >
+                <span className="stl-step-dot" />
+                <span className="stl-step-label">{year}</span>
+              </button>
+            ))}
+            <div className="stl-rail">
+              <motion.div
+                className="stl-rail-fill"
+                animate={{ scaleY: (active + 1) / timeline.length }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              />
+            </div>
+          </div>
+
+          <div className="stl-counter">
+            <span className="stl-counter-num">{String(active + 1).padStart(2, '0')}</span>
+            <span className="stl-counter-sep">/</span>
+            <span className="stl-counter-total">{String(timeline.length).padStart(2, '0')}</span>
+          </div>
+        </div>
+
+        <div className="stl-right">
+          <AnimatePresence mode="wait">
+            {timeline.map(([year, title, text], i) =>
+              i === active ? (
+                <motion.div
+                  key={`${year}-${title}`}
+                  className={`stl-display-card ${i === timeline.length - 1 ? 'stl-display-highlight' : ''}`}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <span className="stl-display-year">{year}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </motion.div>
+              ) : null
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
     </section>
   );
 }

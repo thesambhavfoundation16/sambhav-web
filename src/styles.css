@@ -221,7 +221,7 @@ body {
 .mobile-nav,
 .pillar-card,
 .committee-card,
-.timeline-row article,
+.stl-card,
 .orion-section,
 .orion-panel,
 .orion-form,
@@ -686,62 +686,302 @@ h3 {
   margin-bottom: 32px;
 }
 
-.timeline-row {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(190px, 1fr));
-  gap: 12px;
+/* ── Sticky Timeline (Desktop) & Stacked (Mobile) ── */
+.stl-scroll-section {
+  position: relative;
+  background: var(--bg);
+}
+
+.stl-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(24px, 5vw, 60px);
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: clamp(40px, 8vw, 120px);
+}
+
+.stl-left {
+  flex: 1;
+  max-width: 500px;
+}
+
+.stl-left .eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.stl-left h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.05;
+  margin: 0 0 40px;
+}
+
+/* Progress sidebar */
+.stl-progress {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-left: 20px;
+}
+
+.stl-rail {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 3px;
+  width: 2px;
+  background: var(--border-strong);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.stl-rail-fill {
   width: 100%;
-  max-width: 100vw;
-  overflow-x: auto;
-  padding-bottom: 8px;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: top;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--accent-glow);
 }
 
-.timeline-row article {
-  min-height: 260px;
-  padding: 22px;
+.stl-step {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: default;
+  text-align: left;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.stl-step-on {
+  opacity: 1;
+}
+
+.stl-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  margin-left: -3px;
+  transition: all 0.3s ease;
+}
+
+.stl-step-on .stl-step-dot {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-soft);
+  transform: scale(1.5);
+}
+
+.stl-step-current .stl-step-dot {
+  background: var(--gold);
+  box-shadow: 0 0 12px var(--gold-soft);
+}
+
+.stl-step-label {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--ink);
+  transform: translateY(2px);
+}
+
+.stl-step-current .stl-step-label {
+  color: var(--gold);
+}
+
+.stl-counter {
+  margin-top: 40px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.stl-counter-num {
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+
+.stl-counter-sep {
+  color: var(--border-strong);
+}
+
+.stl-counter-total {
+  color: var(--muted);
+}
+
+/* Right side card */
+.stl-right {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.stl-display-card {
+  width: 100%;
+  padding: 40px;
   border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--timeline-card-bg);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  position: absolute;
 }
 
-.timeline-row article.active {
+.stl-display-highlight {
   background: var(--accent-darker);
   color: #fff;
   border-color: var(--accent-darker);
 }
 
-[data-theme="dark"] .timeline-row article.active {
+[data-theme="dark"] .stl-display-highlight {
   background: var(--accent);
   color: #0a110d;
   border-color: var(--accent);
 }
 
-.timeline-row span {
+.stl-display-year {
   font-family: var(--font-display);
-  font-size: 3rem;
-  line-height: 0.85;
+  font-size: 3.5rem;
+  line-height: 0.9;
   color: var(--gold);
+  display: block;
+  margin-bottom: 20px;
 }
 
-.timeline-row h3 {
-  margin: 20px 0 12px;
+.stl-display-highlight .stl-display-year {
+  color: inherit;
+  opacity: 0.7;
+}
+
+.stl-display-card h3 {
+  margin: 0 0 12px;
   font-family: var(--font-display);
-  font-size: 1.55rem;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.stl-display-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.stl-display-highlight p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+[data-theme="dark"] .stl-display-highlight p {
+  color: rgba(10, 17, 13, 0.7);
+}
+
+/* ── Mobile Stacked Timeline ── */
+.stl-mobile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.stl-m-card {
+  position: relative;
+  padding: 24px 24px 24px 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.stl-m-highlight {
+  background: var(--accent-darker);
+  color: #fff;
+  border-color: var(--accent-darker);
+}
+
+[data-theme="dark"] .stl-m-highlight {
+  background: var(--accent);
+  color: #0a110d;
+  border-color: var(--accent);
+}
+
+.stl-m-dot {
+  position: absolute;
+  left: 20px;
+  top: 32px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.stl-m-highlight .stl-m-dot {
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="dark"] .stl-m-highlight .stl-m-dot {
+  background: #0a110d;
+}
+
+.stl-m-year {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.stl-m-highlight .stl-m-year {
+  color: inherit;
+  opacity: 0.8;
+}
+
+.stl-m-card h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
   font-weight: 400;
   color: inherit;
 }
 
-.timeline-row p {
+.stl-m-card p {
   margin: 0;
   color: var(--muted);
-  line-height: 1.58;
+  line-height: 1.5;
+  font-size: 0.95rem;
 }
 
-.timeline-row article.active p {
-  color: rgba(255, 255, 255, 0.76);
+.stl-m-highlight p {
+  color: rgba(255, 255, 255, 0.8);
 }
 
-[data-theme="dark"] .timeline-row article.active p {
+[data-theme="dark"] .stl-m-highlight p {
   color: rgba(10, 17, 13, 0.7);
 }
 

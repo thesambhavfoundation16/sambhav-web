@@ -133,6 +133,37 @@ html, body {
   margin-top: -12px;
 }
 
+.preloader-footer {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.6;
+}
+
+.preloader-mb-logo {
+  height: 24px;
+  width: auto;
+  filter: grayscale(100%) contrast(1.2) brightness(1.1);
+}
+
+[data-theme="dark"] .preloader-mb-logo {
+  filter: grayscale(100%) invert(1) brightness(0.8);
+}
+
+.preloader-footer span {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 body {
   color: var(--ink);
   background: var(--bg);
@@ -141,12 +172,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-wrap: break-word;
-  cursor: url('/cursor.png'), auto;
-}
-
-/* Ensure interactive elements use the custom cursor or default pointer if it fails */
-a, button, [role="button"], .theme-toggle, input, select, textarea {
-  cursor: url('/cursor.png'), pointer;
 }
 
 /* ── Dark Theme ── */

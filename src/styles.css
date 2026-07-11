@@ -148,11 +148,13 @@ html, body {
 .preloader-mb-logo {
   height: 24px;
   width: auto;
-  filter: grayscale(100%) contrast(1.2) brightness(1.1);
+  /* Force to solid dark color in light mode */
+  filter: brightness(0) opacity(0.65);
 }
 
 [data-theme="dark"] .preloader-mb-logo {
-  filter: grayscale(100%) invert(1) brightness(0.8);
+  /* Force to solid white in dark mode */
+  filter: brightness(0) invert(1) opacity(0.85);
 }
 
 .preloader-footer span {

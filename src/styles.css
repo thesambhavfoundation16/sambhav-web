@@ -141,6 +141,12 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-wrap: break-word;
+  cursor: url('/cursor.png'), auto;
+}
+
+/* Ensure interactive elements use the custom cursor or default pointer if it fails */
+a, button, [role="button"], .theme-toggle, input, select, textarea {
+  cursor: url('/cursor.png'), pointer;
 }
 
 /* ── Dark Theme ── */

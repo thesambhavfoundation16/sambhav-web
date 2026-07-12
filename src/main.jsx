@@ -942,6 +942,14 @@ function OrionAI() {
             <motion.span whileHover={{ scale: 1.05 }}><MessageSquareText size={16} /> Delegate prep</motion.span>
             <motion.span whileHover={{ scale: 1.05 }}><Users size={16} /> Sambhav context</motion.span>
           </div>
+          <a 
+            href="https://ai.matebricks.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="orion-try-link"
+          >
+            Try Orion AI for your platform <ArrowRight size={14} />
+          </a>
         </motion.div>
 
         <motion.div

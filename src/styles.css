@@ -1436,6 +1436,26 @@ h3 {
   color: var(--accent);
 }
 
+.orion-try-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.orion-try-link:hover {
+  opacity: 1;
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
 .orion-panel {
   min-height: 620px;
   display: grid;

@@ -2278,6 +2278,24 @@ h3 {
 
 .masterminds-section {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.masterminds-section .wide-heading {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.masterminds-section .wide-heading h2 {
+  text-align: center;
 }
 
 .mm-desc {
@@ -2286,6 +2304,22 @@ h3 {
   color: var(--muted);
   line-height: 1.6;
   font-size: 1.1rem;
+  text-align: center;
+}
+
+@media (max-width: 860px) {
+  .masterminds-section {
+    min-height: 50vh;
+    padding: 60px 20px;
+  }
+
+  .masterminds-section .wide-heading h2 {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+  }
+
+  .mm-desc {
+    font-size: 0.95rem;
+  }
 }
 
 .mm-btn {

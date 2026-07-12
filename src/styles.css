@@ -143,6 +143,14 @@ html, body {
   align-items: center;
   gap: 8px;
   opacity: 0.6;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.preloader-footer:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 .preloader-mb-logo {

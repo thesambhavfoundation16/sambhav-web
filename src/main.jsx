@@ -178,7 +178,10 @@ function Preloader({ progress }) {
         <p>Preparing Swarashtra 3.0... {Math.round(progress)}%</p>
       </div>
       
-      <motion.div 
+      <motion.a 
+        href="https://matebricks.com/"
+        target="_blank"
+        rel="noopener noreferrer"
         className="preloader-footer"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -186,7 +189,7 @@ function Preloader({ progress }) {
       >
         <img src="/matebrickslogo.png" alt="Matebricks" className="preloader-mb-logo" />
         <span>Built inside Matebricks</span>
-      </motion.div>
+      </motion.a>
     </motion.div>
   );
 }

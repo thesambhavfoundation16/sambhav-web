@@ -214,7 +214,7 @@ function MastermindsSection({ setCurrentPage }) {
           the finest diplomatic simulation in the region.
         </p>
         <button 
-          className="btn btn-primary mt-4" 
+          className="mm-btn" 
           onClick={() => { setCurrentPage('team'); window.scrollTo(0,0); }}
         >
           Meet the Team
@@ -1214,7 +1214,6 @@ function Footer({ setCurrentPage }) {
 }
 
 function TeamPage({ onBack }) {
-  // Placeholders for the team members
   const teamMembers = [
     { name: "John Doe", role: "Founder & Visionary", img: "https://via.placeholder.com/300" },
     { name: "Jane Smith", role: "Head of Operations", img: "https://via.placeholder.com/300" },
@@ -1223,30 +1222,41 @@ function TeamPage({ onBack }) {
   ];
 
   return (
-    <div className="team-page">
-      <header className="privacy-header">
-        <div className="pp-logo-wrap">
-          <img src={logoUrl} alt="Sambhav Foundation logo" className="pp-logo" />
-          <span className="pp-label">Sambhav Foundation</span>
-        </div>
-        <div className="pp-logo-wrap">
-          <span className="pp-label">Powered by Matebricks</span>
-          <img src="/matebrickslogo.png" alt="Matebricks logo" className="pp-logo" />
-        </div>
+    <>
+      <header className="site-header">
+        <a className="brand" href="#home" onClick={(e) => { e.preventDefault(); onBack(); }}>
+          <img src={logoUrl} alt="Sambhav Foundation logo" />
+          <span>
+            <strong>Sambhav</strong>
+            <small>Foundation</small>
+          </span>
+        </a>
+        <nav className="desktop-nav" aria-label="Team page navigation">
+          <motion.a
+            href="#"
+            onClick={(e) => { e.preventDefault(); onBack(); }}
+            whileHover={{ y: -2, color: 'var(--accent)' }}
+            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          >
+            <ChevronLeft size={14} style={{ marginRight: 4 }} /> Back to Home
+          </motion.a>
+        </nav>
       </header>
 
       <main className="team-content">
-        <button className="back-btn" onClick={onBack}>
-          <ChevronLeft size={18} /> Back to Home
-        </button>
-
-        <div className="team-hero">
+        <motion.div 
+          className="team-hero"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="eyebrow">The Visionaries</p>
           <h1>The Masterminds</h1>
           <p className="team-subtitle">
             Meet the dedicated team behind Sambhav Foundation & Swarashtra, working tirelessly to 
             bring diplomacy and leadership to the youth.
           </p>
-        </div>
+        </motion.div>
 
         <div className="team-grid">
           {teamMembers.map((member, i) => (
@@ -1255,7 +1265,7 @@ function TeamPage({ onBack }) {
               key={i}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
             >
               <div className="team-img-wrap">
                 <img src={member.img} alt={member.name} />
@@ -1268,7 +1278,7 @@ function TeamPage({ onBack }) {
           ))}
         </div>
       </main>
-    </div>
+    </>
   );
 }
 

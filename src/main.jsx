@@ -194,6 +194,36 @@ function Preloader({ progress }) {
   );
 }
 
+function MastermindsSection({ setCurrentPage }) {
+  return (
+    <section className="section masterminds-section" id="team">
+      <motion.div
+        className="wide-heading"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+        }}
+      >
+        <p className="eyebrow">The Visionaries</p>
+        <h2>Masterminds behind Sambhav & Swarashtra.</h2>
+        <p className="mm-desc">
+          Meet the dedicated team that works behind the scenes to orchestrate 
+          the finest diplomatic simulation in the region.
+        </p>
+        <button 
+          className="btn btn-primary mt-4" 
+          onClick={() => { setCurrentPage('team'); window.scrollTo(0,0); }}
+        >
+          Meet the Team
+        </button>
+      </motion.div>
+    </section>
+  );
+}
+
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
@@ -325,10 +355,13 @@ function App() {
                   <Committees />
                   <UnifiedGallery />
                   <OrionAI />
+                  <MastermindsSection setCurrentPage={setCurrentPage} />
                   <Register />
                   <Venue />
                 </main>
               </>
+            ) : currentPage === 'team' ? (
+              <TeamPage onBack={() => { setCurrentPage('home'); window.scrollTo(0,0); }} />
             ) : (
               <PrivacyPolicy onBack={() => { setCurrentPage('home'); window.scrollTo(0,0); }} />
             )}
@@ -948,7 +981,7 @@ function OrionAI() {
             rel="noopener noreferrer"
             className="orion-try-link"
           >
-            Try Orion AI for your platform <ArrowRight size={14} />
+            Try Orion AI <ArrowRight size={14} />
           </a>
         </motion.div>
 
@@ -1177,6 +1210,65 @@ function Footer({ setCurrentPage }) {
         </div>
       </div>
     </footer>
+  );
+}
+
+function TeamPage({ onBack }) {
+  // Placeholders for the team members
+  const teamMembers = [
+    { name: "John Doe", role: "Founder & Visionary", img: "https://via.placeholder.com/300" },
+    { name: "Jane Smith", role: "Head of Operations", img: "https://via.placeholder.com/300" },
+    { name: "Alex Johnson", role: "Technical Lead", img: "https://via.placeholder.com/300" },
+    { name: "Sarah Williams", role: "Creative Director", img: "https://via.placeholder.com/300" },
+  ];
+
+  return (
+    <div className="team-page">
+      <header className="privacy-header">
+        <div className="pp-logo-wrap">
+          <img src={logoUrl} alt="Sambhav Foundation logo" className="pp-logo" />
+          <span className="pp-label">Sambhav Foundation</span>
+        </div>
+        <div className="pp-logo-wrap">
+          <span className="pp-label">Powered by Matebricks</span>
+          <img src="/matebrickslogo.png" alt="Matebricks logo" className="pp-logo" />
+        </div>
+      </header>
+
+      <main className="team-content">
+        <button className="back-btn" onClick={onBack}>
+          <ChevronLeft size={18} /> Back to Home
+        </button>
+
+        <div className="team-hero">
+          <h1>The Masterminds</h1>
+          <p className="team-subtitle">
+            Meet the dedicated team behind Sambhav Foundation & Swarashtra, working tirelessly to 
+            bring diplomacy and leadership to the youth.
+          </p>
+        </div>
+
+        <div className="team-grid">
+          {teamMembers.map((member, i) => (
+            <motion.div 
+              className="team-card" 
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+            >
+              <div className="team-img-wrap">
+                <img src={member.img} alt={member.name} />
+              </div>
+              <div className="team-info">
+                <h3>{member.name}</h3>
+                <p>{member.role}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </main>
+    </div>
   );
 }
 

@@ -2423,7 +2423,8 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  filter: grayscale(100%);
+  transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 .team-card:hover .team-img-wrap img {

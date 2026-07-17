@@ -24,6 +24,29 @@ import {
   X,
 } from 'lucide-react';
 import logoUrl from '../IMG_1661.PNG';
+
+const trustees = [
+  { name: "Prakhar Raj Rastogi", img: "https://github.com/user-attachments/assets/1ff1faf4-3dc2-4c60-a242-c4f16c5b91d3", pos: "top" },
+  { name: "Hardik Krishna", img: "https://github.com/user-attachments/assets/44bd00d4-8720-4472-a772-8413bb26ac90", pos: "top" },
+  { name: "Dhruv Pandey", img: "https://github.com/user-attachments/assets/347cc2bc-ba32-4714-9a18-52fa22c2525e", pos: "top right" },
+  { name: "Prabhat Mishra", img: "https://github.com/user-attachments/assets/caaba7f7-90fb-4fa7-bfa1-ce5fe50431be", pos: "top" },
+  { name: "Maisra Husain", img: "https://github.com/user-attachments/assets/ea98ab7c-91d1-4f18-b85c-7620ed7688e1", pos: "center" },
+  { name: "Tasmiah", img: "https://github.com/user-attachments/assets/5f615a1e-3f7d-42b8-84d8-c62a6a815145", pos: "center" },
+  { name: "Devarchit Singh", img: "https://github.com/user-attachments/assets/31020e59-5be7-4b71-be3e-031e4c81d3ff", pos: "center" }
+];
+
+const coreMembers = [
+  { name: "Prathamesh Jhingran", img: "https://github.com/user-attachments/assets/e964c95c-e314-4174-b536-174e824435b8", pos: "center" },
+  { name: "Aryanajeet Singh", img: "https://github.com/user-attachments/assets/3a5416e6-7b9c-4d3e-b5eb-b1f06ff66e77", pos: "center" },
+  { name: "Waqar Fatima", img: "https://github.com/user-attachments/assets/95004192-058e-49cd-a50f-5637f624d4b1", pos: "center" },
+  { name: "Amrit Trivedi", img: "https://github.com/user-attachments/assets/e5d4c355-3429-4841-8f3d-b407e810fe99", pos: "center" },
+  { name: "Aina Mishra", img: "https://github.com/user-attachments/assets/34feb279-bb71-4245-a620-24f9a7525023", pos: "center" },
+  { name: "Mujtaba Ali Khan", img: "https://github.com/user-attachments/assets/50896a85-584e-4b38-84d7-f73dbcf06dd4", pos: "center" },
+  { name: "Arpita Verma", img: "https://github.com/user-attachments/assets/d1f612e6-8ed0-45ad-9782-7bee00b82ec4", pos: "center" },
+  { name: "Daksh Singh", img: "https://github.com/user-attachments/assets/314980ef-9f4a-40c3-96ed-ea8515278fb9", pos: "center" },
+  { name: "Shourya Tiwari", img: "https://github.com/user-attachments/assets/35e497b7-c288-4562-b864-3026b0a97ccb", pos: "center" },
+  { name: "Siddhi yadav", img: "https://github.com/user-attachments/assets/e4b2a975-ee62-4088-9230-fa3b18ac0cae", pos: "center" }
+];
 import './styles.css';
 
 // Paste your GitHub Issue image links inside these quotes:
@@ -241,7 +264,12 @@ function App() {
   }, [loading, menuOpen]);
 
   useEffect(() => {
-    const imagesToPreload = [logoUrl, ...validImages];
+    const imagesToPreload = [
+      logoUrl, 
+      ...validImages,
+      ...trustees.map(t => t.img),
+      ...coreMembers.map(c => c.img)
+    ];
     let loadedCount = 0;
     let done = false;
 
@@ -316,6 +344,7 @@ function App() {
                 <header className="site-header">
                   <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
                     <img src={logoUrl} alt="Sambhav Foundation logo" />
+                    <img src="/navbar-logo.jpeg" alt="Swarashtra Logo" style={{ marginLeft: '-4px' }} />
                     <span>
                       <strong>Sambhav</strong>
                       <small>Foundation</small>
@@ -515,7 +544,6 @@ function Mission() {
 
 function Swarashtra() {
   const timeline = [
-    ['2022', 'SAMBHAV Summit', 'The founding conference and first proof of concept.'],
     ['2024', 'Global Youth Summit', 'Elevating the discourse with global agendas and multilateral cooperation.'],
     ['2024', 'Swarashtra 1.0', 'The flagship identity takes shape, establishing the core MUN experience.'],
     ['2025', 'Sambhav Summit & Swarashtra 2.0', 'Voices that Shape Tomorrow scales the conference with sharper crisis simulations.'],
@@ -1105,9 +1133,16 @@ function Register() {
           <h2>Leave a legacy. Uniting minds, inspiring change.</h2>
           <div className="event-meta">
             <p><strong>Dates:</strong> 8th - 9th August, 2026</p>
-            <p><strong>Cash Pool:</strong> 1,00,000+ INR</p>
           </div>
           
+          <div className="cash-pool-banner" style={{ background: 'var(--accent)', color: 'var(--bg)', padding: '16px 24px', borderRadius: '12px', margin: '24px 0', fontWeight: '800', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '12px', boxShadow: '0 8px 24px rgba(var(--accent-rgb), 0.2)' }}>
+            <span style={{ fontSize: '1.8rem' }}>🏆</span>
+            <div>
+              <div style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', opacity: 0.9 }}>Massive Reward</div>
+              <div>Cash Pool: 1,00,000+ INR</div>
+            </div>
+          </div>
+
           <ul className="perks-list">
             <li>Substantial Cash Prizes, Curated Trophies, and Special Awards.</li>
             <li>Official Certificates signed by esteemed leaders to elevate your CV.</li>
@@ -1214,18 +1249,14 @@ function Footer({ setCurrentPage }) {
 }
 
 function TeamPage({ onBack }) {
-  const teamMembers = [
-    { name: "John Doe", role: "Founder & Visionary", img: "https://via.placeholder.com/300" },
-    { name: "Jane Smith", role: "Head of Operations", img: "https://via.placeholder.com/300" },
-    { name: "Alex Johnson", role: "Technical Lead", img: "https://via.placeholder.com/300" },
-    { name: "Sarah Williams", role: "Creative Director", img: "https://via.placeholder.com/300" },
-  ];
+  const randomizedMembers = useMemo(() => [...coreMembers].sort(() => Math.random() - 0.5), []);
 
   return (
     <>
       <header className="site-header">
         <a className="brand" href="#home" onClick={(e) => { e.preventDefault(); onBack(); }}>
           <img src={logoUrl} alt="Sambhav Foundation logo" />
+          <img src="/navbar-logo.jpeg" alt="Swarashtra Logo" style={{ marginLeft: '-4px' }} />
           <span>
             <strong>Sambhav</strong>
             <small>Foundation</small>
@@ -1258,24 +1289,49 @@ function TeamPage({ onBack }) {
           </p>
         </motion.div>
 
-        <div className="team-grid">
-          {teamMembers.map((member, i) => (
-            <motion.div 
-              className="team-card" 
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-            >
-              <div className="team-img-wrap">
-                <img src={member.img} alt={member.name} />
-              </div>
-              <div className="team-info">
-                <h3>{member.name}</h3>
-                <p>{member.role}</p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="team-section">
+          <h2 className="team-section-title" style={{ textAlign: 'center', marginBottom: '2rem', fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--fg)', fontFamily: 'var(--font-display)' }}>Trustees</h2>
+          <div className="team-grid">
+            {trustees.map((member, i) => (
+              <motion.div 
+                className="team-card" 
+                key={member.name}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+              >
+                <div className="team-img-wrap">
+                  <img src={member.img} alt={member.name} style={{ objectPosition: member.pos || 'center' }} />
+                </div>
+                <div className="team-info" style={{ textAlign: 'center' }}>
+                  <h3 style={{ margin: 0 }}>{member.name}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="team-section" style={{ marginTop: '5rem' }}>
+          <h2 className="team-section-title" style={{ textAlign: 'center', marginBottom: '2rem', fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--fg)', fontFamily: 'var(--font-display)' }}>Core Team</h2>
+          <div className="team-grid">
+            {randomizedMembers.map((member, i) => (
+              <motion.div 
+                className="team-card" 
+                key={member.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.1 + (i % 3) * 0.1 }}
+              >
+                <div className="team-img-wrap">
+                  <img src={member.img} alt={member.name} style={{ objectPosition: member.pos || 'center' }} />
+                </div>
+                <div className="team-info" style={{ textAlign: 'center' }}>
+                  <h3 style={{ margin: 0 }}>{member.name}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </main>
     </>

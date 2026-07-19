@@ -31,7 +31,7 @@ const trustees = [
   { name: "Dhruv Pandey", img: "https://github.com/user-attachments/assets/347cc2bc-ba32-4714-9a18-52fa22c2525e", pos: "top right" },
   { name: "Prabhat Mishra", img: "https://github.com/user-attachments/assets/caaba7f7-90fb-4fa7-bfa1-ce5fe50431be", pos: "top" },
   { name: "Maisra Husain", img: "https://github.com/user-attachments/assets/ea98ab7c-91d1-4f18-b85c-7620ed7688e1", pos: "center" },
-  { name: "Tasmiah", img: "https://github.com/user-attachments/assets/5f615a1e-3f7d-42b8-84d8-c62a6a815145", pos: "center" },
+  { name: "Malak Hasan", img: "https://github.com/user-attachments/assets/5f615a1e-3f7d-42b8-84d8-c62a6a815145", pos: "center" },
   { name: "Devarchit Singh", img: "https://github.com/user-attachments/assets/31020e59-5be7-4b71-be3e-031e4c81d3ff", pos: "center" }
 ];
 
